@@ -1,11 +1,12 @@
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
     <head>
+        <link rel="shortcut icon" href="{{ asset('Imgs/vidiclogo.png') }}">
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -46,10 +47,11 @@
             }
 
             .title {
-                font-size: 84px;
+                font-size: 70px;
             }
 
             .links > a {
+                background: #660066;
                 color: #636b6f;
                 padding: 0 25px;
                 font-size: 12px;
@@ -57,6 +59,12 @@
                 letter-spacing: .1rem;
                 text-decoration: none;
                 text-transform: uppercase;
+            }
+            .links > a:hover{
+                backgroundf: transparent;
+                text-transform: initial;
+                text-decoration: underline;
+                color: #636b6f;
             }
 
             .m-b-md {
@@ -67,19 +75,19 @@
     <body>
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
-                    @endauth
-                </div>
+            <div class="top-right links">
+                @auth
+                <a href="{{ url('/home') }}">Home</a>
+                @else
+                <a href="{{ route('login') }}">Login</a>
+                <a href="{{ route('register') }}">Register</a>
+                @endauth
+            </div>
             @endif
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    PROPERTY MANAGEMENT SYSTEM
                 </div>
 
                 <div class="links">
