@@ -310,7 +310,9 @@ desired effect
       Anything you want
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; <span><script>var d = new Date();
+        var n = d.getFullYear();
+        document.write(n);</script></span> <a href="http://www/vidic/co.ke">VIDIC</a>.</strong> All rights reserved.
   </footer>
 
   <!-- Control Sidebar -->
