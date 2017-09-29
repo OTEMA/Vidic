@@ -38,7 +38,7 @@
                     <!-- mini logo for sidebar mini 50x50 pixels -->
                     <span class="logo-mini"><b>A</b>LT</span>
                     <!-- logo for regular state and mobile devices -->
-                    <span class="logo-lg"><b>Admin</b>LTE</span>
+                    <span class="logo-lg"><img class="img-circle img-md img-responsive" src="{{ asset('Imgs/vidiclogo.png') }}" alt="VIDIC"></span>
                 </a>
 
                 <!-- Header Navbar -->
@@ -188,10 +188,14 @@
                                         <div class="pull-left">
                                             <a href="#" class="btn btn-default btn-flat">Profile</a>
                                         </div>
+                                        <!-- Log out-->
                                         <div class="pull-right">
                                             <a href="{{ route('logout') }}" class="btn btn-default btn-flat"
                                                onclick="event.preventDefault();document.getElementById('logout-form').submit();"> Sign out </a>
-                                  </div>
+                                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                                        </div>
                                   </li>
                                   </ul>
                                   </li>
@@ -215,7 +219,7 @@
                                                 <img src="{{ asset('Admin/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
                                             </div>
                                             <div class="pull-left info">
-                                                <p>Alexander Pierce</p>
+                                                <p>{{ Auth::user()->name }}</p>
                                                 <!-- Status -->
                                                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                                             </div>
