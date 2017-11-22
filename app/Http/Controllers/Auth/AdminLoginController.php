@@ -14,6 +14,11 @@ class AdminLoginController extends Controller
         return view('auth.admin-login');
     }
     public function login(){
-        return true;
+        //validate the form data
+        //
+        // atttempt to log in the user
+        // 
+        // if successful redirect to their intetded location
+         // if unsucefull then redirect back to the login
     }
 }
