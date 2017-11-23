@@ -165,7 +165,7 @@
 
                                         <p>
                                             {{ Auth::user()->name }}
-                                        <small>Member since Nov. 2012</small>
+                                        <small>Member since : {{ Auth::user()->created_at }} </small>
                                         </p>
                                     </li>
                                     <!-- Menu Body -->
@@ -244,7 +244,7 @@
                                             <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Dash board</span></a></li>
                                             <li><a href="#"><i class="fa fa-link"></i> <span>SUBSCRIPTIONS</span></a></li>
                                             <li class="treeview">
-                                                <a href="#"><i class="fa fa-link"></i> <span></span>
+                                                <a href="#"><i class="fa fa-link"></i> <span>Users</span>
                                                     <span class="pull-right-container">
                                                         <i class="fa fa-angle-left pull-right">Users</i>
                                                     </span>
