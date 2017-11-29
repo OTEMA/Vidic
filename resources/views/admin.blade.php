@@ -1,24 +1,27 @@
+<!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <link rel="shortcut icon" href="{{ asset('../Imgs/vidiclogo.png') }}">
+        <!-- CSRF Token -->
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>{{ config('app.name', 'Laravel') }}</title>
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <!-- Bootstrap 3.3.6 -->
-        <link href="{{ asset('../Admin/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css"/>
+        <link href="{{ asset('../Admin-files/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css"/>
         <!-- Font Awesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
         <!-- Ionicons -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
         <!-- Theme style -->
-        <link href="{{ asset('../Admin/dist/css/AdminLTE.min.css')}}" rel="stylesheet" type="text/css"/>
+        <link href="{{ asset('../Admin-files/dist/css/AdminLTE.min.css')}}" rel="stylesheet" type="text/css"/>
         <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
               page. However, you can choose any other skin. Make sure you
               apply the skin class to the body tag so the changes take effect.
         -->
-        <link href="{{ asset('../Admin/dist/css/skins/skin-purple.min.css')}}" rel="stylesheet" type="text/css"/>
+        <link href="{{ asset('../Admin-files/dist/css/skins/skin-purple.min.css')}}" rel="stylesheet" type="text/css"/>
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -26,8 +29,38 @@
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
+        <!-- jQuery 2.2.3 -->
+        <script src="{{ asset('../Admin-files/plugins/jQuery/jquery-2.2.3.min.js')}}"></script>
+        <style>
+            .staff-reg{
+                display: none;
+            }
+        </style>
+        <script>
+(function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments);
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m);
+})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+ga('create', 'UA-40923671-1', 'websiteurl');
+ga('send', 'pageview');
+
+$(document).ready(function viewStaffReg() {
+    if (document.getElementById('staff-reg').style.display === "none") {
+        document.getElementById('staff-reg').style.display = "block";
+    } else {
+        //document.getElementById('staff-reg').style.display = "block";
+    }
+});
+        </script>
     </head>
-        <body class="hold-transition skin-purple sidebar-mini">
+    <body class="hold-transition skin-purple sidebar-mini">
         <div class="wrapper">
 
             <!-- Main Header -->
@@ -150,7 +183,7 @@
                                 <!-- Menu Toggle Button -->
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <!-- The user image in the navbar-->
-                                    <img src="{{ asset('../Admin/dist/img/user2-160x160.jpg')}}" class="user-image" alt="User Image">
+                                    <img src="{{ asset('../Admin-files/dist/img/user2-160x160.jpg')}}" class="user-image" alt="User Image">
                                     <!-- hidden-xs hides the username on small devices so only the image appears. -->
                                     <span class="hidden-xs"> @if (session('status'))
                                         <div class="alert alert-success">
@@ -161,11 +194,11 @@
                                 <ul class="dropdown-menu">
                                     <!-- The user image in the menu -->
                                     <li class="user-header">
-                                        <img src="{{ asset('../Admin/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
+                                        <img src="{{ asset('../Admin-files/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
 
                                         <p>
                                             {{ Auth::user()->name }}
-                                        <small>Member since : {{ Auth::user()->created_at }} </small>
+                                            <small>Member since :<span class="text-green"> {{ Auth::user()->DATE }}</span> </small>
                                         </p>
                                     </li>
                                     <!-- Menu Body -->
@@ -191,201 +224,254 @@
                                         <!-- Log out-->
                                         <div class="pull-right">
                                             <a href="{{ route('logout') }}" class="btn btn-default btn-flat"
-                                               onclick="event.preventDefault();document.getElementById('logout-form').submit();"> Sign out </a>
-                                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                        </div>
-                                  </li>
-                                  </ul>
-                                  </li>
-                                  <!-- Control Sidebar Toggle Button -->
-                                  <li>
-                                  <a href ="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-                                    </li>
-                                </ul>
-                                </div>
-                                </nav>
-                                </header>
-                                <!-- Left side column. contains the logo and sidebar -->
-                                <aside class="main-sidebar">
-
-                                    <!-- sidebar: style can be found in sidebar.less -->
-                                    <section class="sidebar">
-
-                                        <!-- Sidebar user panel (optional) -->
-                                        <div class="user-panel">
-                                            <div class="pull-left image">
-                                                <img src="{{ asset('../Admin/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
-                                            </div>
-                                            <div class="pull-left info">
-                                                <p>{{ Auth::user()->name }}</p>
-                                                <!-- Status -->
-                                                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-                                            </div>
-                                        </div>
-
-                                        <!-- search form (Optional) -->
-                                        <form action="#" method="get" class="sidebar-form">
-                                            <div class="input-group">
-                                                <input type="text" name="q" class="form-control" placeholder="Search...">
-                                                <span class="input-group-btn">
-                                                    <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                                                    </button>
-                                                </span>
-                                            </div>
-                                        </form>
-                                        <!-- /.search form -->
-
-                                        <!-- Sidebar Menu -->
-                                        <ul class="sidebar-menu">
-                                            <li class="header">HEADER</li>
-                                            <!-- Optionally, you can add icons to the links -->
-                                            <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Dash board</span></a></li>
-                                            <li><a href="#"><i class="fa fa-link"></i> <span>SUBSCRIPTIONS</span></a></li>
-                                            <li class="treeview">
-                                                <a href="#"><i class="fa fa-link"></i> <span>Users</span>
-                                                    <span class="pull-right-container">
-                                                        <i class="fa fa-angle-left pull-right">Users</i>
-                                                    </span>
-                                                </a>
-                                                <ul class="treeview-menu">
-                                                    <li><a href="#">Manage users</a></li>
-                                                    <li><a href="#">Manage departments</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                        <!-- /.sidebar-menu -->
-                                    </section>
-                                    <!-- /.sidebar -->
-                                </aside>
-
-                                <!-- Content Wrapper. Contains page content -->
-                                <div class="content-wrapper">
-                                    <!-- Content Header (Page header) -->
-                                    <section class="content-header">
-                                        <h1>
-                                            Page Header
-                                            <small>Optional description</small>
-                                        </h1>
-                                        <ol class="breadcrumb">
-                                            <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-                                            <li class="active">Here</li>
-                                        </ol>
-                                    </section>
-
-                                    <!-- Main content -->
-                                    <section class="content">
-
-                                        <!-- Your Page Content Here -->
-
-                                    </section>
-                                    <!-- /.content -->
-                                </div>
-                                <!-- /.content-wrapper -->
-
-                                <!-- Main Footer -->
-                                <footer class="main-footer">
-                                    <!-- To the right -->
-                                    <div class="pull-right hidden-xs">
-                                        Anything you want
-                                    </div>
-                                    <!-- Default to the left -->
-                                    <strong>Copyright &copy; <span><script>var d = new Date();
-                                        var n = d.getFullYear();
-                                        document.write(n);</script></span> <a href="http://www/vidic/co.ke">VIDIC</a>.</strong> All rights reserved.
-                                </footer>
-
-                                <!-- Control Sidebar -->
-                                <aside class="control-sidebar control-sidebar-dark">
-                                    <!-- Create the tabs -->
-                                    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-                                        <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-                                        <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-                                    </ul>
-                                    <!-- Tab panes -->
-                                    <div class="tab-content">
-                                        <!-- Home tab content -->
-                                        <div class="tab-pane active" id="control-sidebar-home-tab">
-                                            <h3 class="control-sidebar-heading">Recent Activity</h3>
-                                            <ul class="control-sidebar-menu">
-                                                <li>
-                                                    <a href="javascript:;">
-                                                        <i class="menu-icon fa fa-birthday-cake bg-red"></i>
-
-                                                        <div class="menu-info">
-                                                            <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
-
-                                                            <p>Will be 23 on April 24th</p>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                            <!-- /.control-sidebar-menu -->
-
-                                            <h3 class="control-sidebar-heading">Tasks Progress</h3>
-                                            <ul class="control-sidebar-menu">
-                                                <li>
-                                                    <a href="javascript:;">
-                                                        <h4 class="control-sidebar-subheading">
-                                                            Custom Template Design
-                                                            <span class="pull-right-container">
-                                                                <span class="label label-danger pull-right">70%</span>
-                                                            </span>
-                                                        </h4>
-
-                                                        <div class="progress progress-xxs">
-                                                            <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                            <!-- /.control-sidebar-menu -->
-
-                                        </div>
-                                        <!-- /.tab-pane -->
-                                        <!-- Stats tab content -->
-                                        <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
-                                        <!-- /.tab-pane -->
-                                        <!-- Settings tab content -->
-                                        <div class="tab-pane" id="control-sidebar-settings-tab">
-                                            <form method="post">
-                                                <h3 class="control-sidebar-heading">General Settings</h3>
-
-                                                <div class="form-group">
-                                                    <label class="control-sidebar-subheading">
-                                                        Report panel usage
-                                                        <input type="checkbox" class="pull-right" checked>
-                                                    </label>
-
-                                                    <p>
-                                                        Some information about this general settings option
-                                                    </p>
-                                                </div>
-                                                <!-- /.form-group -->
+                                               onclick="event.preventDefault();
+                                                       document.getElementById('logout-form').submit();"> Sign out </a>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                {{ csrf_field() }}
                                             </form>
                                         </div>
-                                        <!-- /.tab-pane -->
-                                    </div>
-                                </aside>
-                                <!-- /.control-sidebar -->
-                                <!-- Add the sidebar's background. This div must be placed
-                                     immediately after the control sidebar -->
-                                <div class="control-sidebar-bg"></div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- Control Sidebar Toggle Button -->
+                            <li>
+                                <a href ="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+            <!-- Left side column. contains the logo and sidebar -->
+            <aside class="main-sidebar">
+
+                <!-- sidebar: style can be found in sidebar.less -->
+                <section class="sidebar">
+
+                    <!-- Sidebar user panel (optional) -->
+                    <div class="user-panel">
+                        <div class="pull-left image">
+                            <img src="{{ asset('../Admin-files/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
+                        </div>
+                        <div class="pull-left info">
+                            <p>{{ Auth::user()->name }}</p>
+                            <!-- Status -->
+                            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                        </div>
+                    </div>
+
+                    <!-- search form (Optional) -->
+                    <form action="#" method="get" class="sidebar-form">
+                        <div class="input-group">
+                            <input type="text" name="q" class="form-control" placeholder="Search...">
+                            <span class="input-group-btn">
+                                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </form>
+                    <!-- /.search form -->
+
+                    <!-- Sidebar Menu -->
+                    <ul class="sidebar-menu">
+                        <li class="header">NAVIGATION</li>
+                        <!-- Optionally, you can add icons to the links -->
+                        <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Dash board</span></a></li>
+                        <li><a href="#"><i class="fa fa-link"></i> <span>SUBSCRIPTIONS</span></a></li>
+                        <li class="treeview">
+                            <a href="#"><i class="fa fa-link"></i> <span>Users</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right">Users</i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li class="treeview">
+                                    <a href="#">Manage users</a>
+                                    <ul class="treeview-menu">
+                                        <li class="treeview">
+                                            <button class="btn btn-block btn-success" onclick="viewStaffReg()">Register a staff Member </button></li>
+                                        <li><a href="#">View Staff members</a></li>
+                                        <li><a href="#">Delete a staff member</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Manage departments</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!-- /.sidebar-menu -->
+                </section>
+                <!-- /.sidebar -->
+            </aside>
+
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>
+                        Page Header
+                        <small>Optional description</small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+                        <li class="active"></li>
+                    </ol>
+                </section>
+
+                <!-- Main content -->
+                <section class="content">
+
+                    <div class="well staff-reg" id="staff-reg">
+                        <!-- general form elements -->
+                        <div class="row">
+                            <div class="box box-primary col-md-5">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Register A staff Memmber</h3>
                                 </div>
-                                <!-- ./wrapper -->
+                                <!-- /.box-header -->
+                                <!-- form start -->
+                                <form role="form">
+                                    <div class="box-body">
+                                        <div class="form-group">
+                                            <label for="staffId">Staff Id</label>
+                                            <input type="text" class="form-control" id="staffId" placeholder="Enter Staff Id">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="fname">Name</label>
+                                            <input type="text" class="form-control" id="fname" placeholder="Enter First Name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="mname">Second Name</label>
+                                            <input type="text" class="form-control" id="mname" placeholder="Enter Second Name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="lname">LastName</label>
+                                            <input type="text" class="form-control" id="lname" placeholder="Enter Last Name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="jtitle">Job Title</label>
+                                            <input type="text" class="form-control" id="jtitle" placeholder="eg. Accounts/Manger etc">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Email address</label>
+                                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="DOB">Date of Birth</label>
+                                            <input class="form-control" id="DOB"  name="date" placeholder="MM-DD-YYYY" required="required" type="date"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="DOA">Date of Admission</label>
+                                            <input class="form-control" id="DOA"  name="date1" placeholder="MM/DD/YYYY" required="" type="date"/>
+                                        </div>
+                                    </div>
+                                    <!-- /.box-body -->
 
-                                <!-- REQUIRED JS SCRIPTS -->
+                                    <div class="box-footer">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- /.box -->
+                        </div>
+                    </div>
+                </section>
+                <!-- /.content -->
+            </div>
+            <!-- /.content-wrapper -->
 
-                                <!-- jQuery 2.2.3 -->
-                                <script src="{{ asset('../Admin/plugins/jQuery/jquery-2.2.3.min.js')}}"></script>
-                                <!-- Bootstrap 3.3.6 -->
-                                <script src="{{ asset('../Admin/bootstrap/js/bootstrap.min.js')}}" type="text/javascript"></script>
-                                <!-- AdminLTE App -->
-                                <script src="{{ asset('../Admin/dist/js/app.min.js')}}" type="text/javascript"></script>
-                                <!-- Optionally, you can add Slimscroll and FastClick plugins.
-                                     Both of these plugins are recommended to enhance the
-                                     user experience. Slimscroll is required when using the
-                                     fixed layout. -->
-                                </body>
-                                </html>
+            <!-- Main Footer -->
+            <footer class="main-footer">
+                <!-- To the right -->
+                <div class="pull-right hidden-xs">
+                    Powered by <a href="">otema<sup>TM</sup></a>
+                </div>
+                <!-- Default to the left -->
+                <strong>Copyright &copy; <span><script>var d = new Date();
+                    var n = d.getFullYear();
+                    document.write(n);</script></span> <a href="http://www/vidic/co.ke">VIDIC</a>.</strong> All rights reserved.
+            </footer>
+
+            <!-- Control Sidebar -->
+            <aside class="control-sidebar control-sidebar-dark">
+                <!-- Create the tabs -->
+                <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+                    <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+                    <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+                </ul>
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <!-- Home tab content -->
+                    <div class="tab-pane active" id="control-sidebar-home-tab">
+                        <h3 class="control-sidebar-heading">Recent Activity</h3>
+                        <ul class="control-sidebar-menu">
+                            <li>
+                                <a href="javascript:;">
+                                    <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+
+                                    <div class="menu-info">
+                                        <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+
+                                        <p>Will be 23 on April 24th</p>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                        <!-- /.control-sidebar-menu -->
+
+                        <h3 class="control-sidebar-heading">Tasks Progress</h3>
+                        <ul class="control-sidebar-menu">
+                            <li>
+                                <a href="javascript:;">
+                                    <h4 class="control-sidebar-subheading">
+                                        Custom Template Design
+                                        <span class="pull-right-container">
+                                            <span class="label label-danger pull-right">70%</span>
+                                        </span>
+                                    </h4>
+
+                                    <div class="progress progress-xxs">
+                                        <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                        <!-- /.control-sidebar-menu -->
+
+                    </div>
+                    <!-- /.tab-pane -->
+                    <!-- Stats tab content -->
+                    <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
+                    <!-- /.tab-pane -->
+                    <!-- Settings tab content -->
+                    <div class="tab-pane" id="control-sidebar-settings-tab">
+                        <form method="post">
+                            <h3 class="control-sidebar-heading">General Settings</h3>
+
+                            <div class="form-group">
+                                <label class="control-sidebar-subheading">
+                                    Report panel usage
+                                    <input type="checkbox" class="pull-right" checked>
+                                </label>
+
+                                <p>
+                                    Some information about this general settings option
+                                </p>
+                            </div>
+                            <!-- /.form-group -->
+                        </form>
+                    </div>
+                    <!-- /.tab-pane -->
+                </div>
+            </aside>
+            <!-- /.control-sidebar -->
+            <!-- Add the sidebar's background. This div must be placed
+                 immediately after the control sidebar -->
+            <div class="control-sidebar-bg"></div>
+        </div>
+        <!-- ./wrapper -->
+        <!-- REQUIRED JS SCRIPTS -->
+        <!-- Bootstrap 3.3.6 -->
+        <script src="{{ asset('../Admin-files/bootstrap/js/bootstrap.min.js')}}" type="text/javascript"></script>
+        <!-- AdminLTE App -->
+        <script src="{{ asset('../Admin-files/dist/js/app.min.js')}}" type="text/javascript"></script>
+            </body>
+</html>
