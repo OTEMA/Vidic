@@ -75,6 +75,17 @@
 
         @yield('content')
     </div>
+    <!-- Main Footer -->
+    <footer class="main-footer well" style="margin-bottom: 0; margin-top: 20%; /*float: bottom;*/">
+                <!-- To the right -->
+                <div class="pull-right hidden-xs">
+                    Powered by <a href="">otema<sup>TM</sup></a>
+                </div>
+                <!-- Default to the left -->
+                <strong>Copyright &copy; <span><script>var d = new Date();
+                    var n = d.getFullYear();
+                    document.write(n);</script></span> <a href="http://www/vidic/co.ke">VIDIC</a>.</strong> All rights reserved.
+            </footer>
 
     <!-- Scripts -->
     <script src="{{ asset('/../js/app.js') }}"></script>
